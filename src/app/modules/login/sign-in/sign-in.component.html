@@ -1,0 +1,29 @@
+<div class="signin-screen">
+    <div align = "center">
+        <h1 class="login-title">Iniciar sesión</h1>
+
+        <form (ngSubmit)="onSubmit()">
+
+            <div>
+                <label>Usuario</label>
+                <input type="text" id="user_id" name="user_id" class="user_id" [(ngModel)]="user" />
+    
+            </div>
+    
+            <div>
+                <label>Contraseña</label>
+                <input type="password" id="user_password" name="user_password" class="user_password" [(ngModel)]="password" required />
+    
+            </div>
+    
+            <div>
+                <button type="submit" class="login-button" >Entrar</button>
+            </div>
+    
+        </form>
+
+        <div class="error-message" *ngIf="incorrectCredentials">Credenciales incorrectas</div>
+
+    </div>
+
+</div>

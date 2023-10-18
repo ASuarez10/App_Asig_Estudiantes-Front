@@ -1,0 +1,16 @@
+.signin-screen {
+    background-color: #6D6E72;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 100vh;
+}
+
+input {
+    background-color: #595959;
+}
+
+.login-title{
+    color: #FFFF;
+}
