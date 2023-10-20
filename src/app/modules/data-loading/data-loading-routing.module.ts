@@ -6,8 +6,8 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      {path: 'candidatesloading', component: CandidatesLoadingComponent},
-      {path: '**', redirectTo: 'candidatesloading'}
+      {path: 'candidates', component: CandidatesLoadingComponent},
+      {path: '**', redirectTo: 'candidates'}
     ]
   }
 ];

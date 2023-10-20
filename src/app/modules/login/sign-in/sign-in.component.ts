@@ -31,6 +31,7 @@ export class SignInComponent {
     if(this.user in usersCredentials){
       if(this.password == usersCredentials[this.user].password){
         console.log("Credenciales correctas");
+        localStorage.setItem('ROL', usersCredentials[this.user].role);
         this.router.navigate(['/data_loading']);
       }else{
         this.incorrectCredentials = true;
