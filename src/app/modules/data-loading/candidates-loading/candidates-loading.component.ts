@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CandidateInterface } from 'src/app/core/model/candidate';
+import { MessageService } from 'primeng/api';
+import { CandidateService } from 'src/app/core/service/candidate.service';
 
 @Component({
   selector: 'app-candidates-loading',
@@ -6,5 +9,83 @@ import { Component } from '@angular/core';
   styleUrls: ['./candidates-loading.component.css']
 })
 export class CandidatesLoadingComponent {
+
+  usuarioRol: string = '';
+
+  selectedFile: File | undefined;
+
+  constructor(private messageService: MessageService, private candidateService : CandidateService) {}
+
+  ngOnInit(): void{
+    this.usuarioRol = localStorage.getItem('ROL') as string;
+  }
+  
+  onFileSelect(event: any): void {
+    this.selectedFile = event.files[0] as File;
+    this.messageService.add({severity: 'info', summary: 'Archivo seleccionado', detail: this.selectedFile.name});
+    console.log(this.selectedFile);
+  }
+
+  onUpload(event: any): void {
+
+    console.log("Entra a onUpload")
+    if(this.selectedFile){ //Se pone la condicion porque reader.readAsText() espera un parametro tipo Blob que pide asegurarse de que el archivo exista
+      const reader = new FileReader();  
+      reader.onload = () => {
+
+        const fileContent = reader.result as string;
+        const fileLines = fileContent.split('\n');
+
+        const candidateList : CandidateInterface[] = [];
+
+        try{
+
+          fileLines.forEach(line => {
+            const fields = line.split(',');
+
+            if(fields.length < 4){
+              throw new Error('Empty line. Possible file end. End of loop')
+            }
+
+            //console.log(fields)
+            const candidate : CandidateInterface = {
+              id_candidate : fields[0].trim(),
+              name : fields[1].trim(),
+              lastname: fields[2].trim(),
+              age : parseInt(fields[7].trim()),
+              city : fields[4].trim(),
+              estate : fields[5].trim(),
+              icfes_general : parseInt(fields[6].trim()),
+              id_type : fields[8].trim(),
+              sex : fields[3].trim(),
+              headquartercareer : {
+                  id_headquarter_career : parseInt(fields[10].trim()) 
+              },
+              education_type : {
+                id_education_type : parseInt(fields[9].trim()) 
+              }
+            }
+
+            console.log(candidate)
+
+            candidateList.push(candidate);
+
+          });
+
+        } catch(error){
+
+        }
+
+        this.candidateService.postCandidates(candidateList).subscribe(data => console.log(data));
+      
+      };
+
+      reader.readAsText(this.selectedFile);
+
+    }
+
+    console.log('Upload completed')
+
+  }//end onUpload()
 
 }
