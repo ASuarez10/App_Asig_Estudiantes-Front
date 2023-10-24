@@ -8,7 +8,7 @@ import { CandidateInterface } from '../model/candidate';
 })
 export class CandidateService {
 
-  private API_CANDIDATES = "http://localhost:8080/api/candidates";
+  private API_CANDIDATES = "http://localhost:8080/api/candidates/saveCandidates";
 
   constructor(private http : HttpClient) {}
 

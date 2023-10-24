@@ -1,0 +1,15 @@
+.container {
+    background-color: #6D6E72;
+}
+
+.components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+h1{
+    margin: 50px;
+}

@@ -8,13 +8,22 @@ import {MenuItem} from 'primeng/api';
 })
 export class MenuBarComponent {
 
+  //Menu bar styles
+  menuBarStyles: { [style: string]: string } = {
+    'background-color': '#E51A0D'
+  };
+
+  //Logout button styles
+  buttonStyles: { [style: string]: string } = {
+    'background-color': 'transparent',
+    'border': 'none'
+  };
+
+  //Rol recieved for costumization
   @Input() rol: string = '';
 
+  //Items or options in the menu bar. Example: "Inicio", "Mis reportes", etc.
   items: MenuItem[] = [];
-
-  items_recruiter: MenuItem[] = [];
-
-  usuarioRol: string = ''
 
   ngOnInit() {
 

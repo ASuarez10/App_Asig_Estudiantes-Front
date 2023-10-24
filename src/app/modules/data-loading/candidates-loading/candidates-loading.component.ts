@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CandidateInterface } from 'src/app/core/model/candidate';
 import { MessageService } from 'primeng/api';
 import { CandidateService } from 'src/app/core/service/candidate.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-candidates-loading',
@@ -13,6 +14,8 @@ export class CandidatesLoadingComponent {
   usuarioRol: string = '';
 
   selectedFile: File | undefined;
+
+  httpResponseStatus : number = 0;
 
   constructor(private messageService: MessageService, private candidateService : CandidateService) {}
 
@@ -78,6 +81,8 @@ export class CandidatesLoadingComponent {
 
         this.candidateService.postCandidates(candidateList).subscribe(data => console.log(data));
       
+        //this.candidateService.postCandidates(candidateList).subscribe(data => {console.log(data);this.httpResponseStatus = data.status;});
+
       };
 
       reader.readAsText(this.selectedFile);

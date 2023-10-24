@@ -1,16 +1,20 @@
-<app-menu-bar [rol]="usuarioRol"></app-menu-bar>
-
 <div class="container">
-    <h1>Carga de candidatos</h1>
+    <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
 
-    <p-fileUpload
-    name="files[]" 
-    accept=".csv"
-    (onSelect)="onFileSelect($event)"
-    label="Seleccionar Archivo CSV"
-    [customUpload]="true"
-    (uploadHandler)="onUpload($event)"
-    >
-    </p-fileUpload>
+    <div class="components">
+        <h1>Carga de candidatos</h1>
 
+        <p-fileUpload
+        name="files[]" 
+        accept=".csv"
+        (onSelect)="onFileSelect($event)"
+        label="Seleccionar Archivo CSV"
+        [customUpload]="true"
+        (uploadHandler)="onUpload($event)"
+        >
+        </p-fileUpload>
+
+        <label *ngIf="httpResponseStatus === 200">Carga exitosa</label>
+
+    </div>
 </div>
