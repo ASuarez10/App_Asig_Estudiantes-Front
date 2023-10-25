@@ -1,3 +1,3 @@
-<p-menubar [model]="items" [style]="menuBarStyles">
-        <button pButton label="Cerrar sesión" class="pi pi-power-off" [style]="buttonStyles"></button>
+<p-menubar [model]="items" [style]="menuBarStyles" styleClass="menu-bar-custom">
+        <button pButton label="Cerrar sesión" class="pi pi-power-off" [style]="buttonStyles" (click)="logout()"></button>
 </p-menubar>

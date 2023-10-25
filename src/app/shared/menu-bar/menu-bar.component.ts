@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
@@ -8,9 +9,12 @@ import {MenuItem} from 'primeng/api';
 })
 export class MenuBarComponent {
 
+  constructor(private router: Router) {}
+
   //Menu bar styles
   menuBarStyles: { [style: string]: string } = {
-    'background-color': '#E51A0D'
+    'background-color': '#E51A0D',
+    'color': 'white'
   };
 
   //Logout button styles
@@ -36,6 +40,11 @@ export class MenuBarComponent {
       })
     }
     
+  }
+
+  logout() {
+    localStorage.removeItem('ROL');
+    this.router.navigate(['/login']);
   }
 
 }

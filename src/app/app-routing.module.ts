@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('../app/modules/data-loading/data-loading.module').then(m => m.DataLoadingModule)
   },
   {
+    path: 'selection_process',
+    loadChildren: () => import('../app/modules/selection-process/selection-process.module').then(m => m.SelectionProcessModule)
+  },
+  {
     path: '**', component: Page404Component
   }
 ];
