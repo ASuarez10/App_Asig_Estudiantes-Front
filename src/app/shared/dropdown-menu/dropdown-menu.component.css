@@ -1,0 +1,10 @@
+.dropdown {
+    cursor: pointer;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+ 

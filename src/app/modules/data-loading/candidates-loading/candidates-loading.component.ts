@@ -11,10 +11,13 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class CandidatesLoadingComponent {
 
+  //Variable that stores the rol from the browser local storage
   usuarioRol: string = '';
 
+  //Variable that stores file selected
   selectedFile: File | undefined;
 
+  //Variable that stores the HTTP response status
   httpResponseStatus : number = 0;
 
   constructor(private messageService: MessageService, private candidateService : CandidateService) {}
@@ -23,12 +26,14 @@ export class CandidatesLoadingComponent {
     this.usuarioRol = localStorage.getItem('ROL') as string;
   }
   
+  //Method to store the file selected into a variable
   onFileSelect(event: any): void {
     this.selectedFile = event.files[0] as File;
     this.messageService.add({severity: 'info', summary: 'Archivo seleccionado', detail: this.selectedFile.name});
     console.log(this.selectedFile);
   }
 
+  //Method to read and send candidate information
   onUpload(event: any): void {
 
     console.log("Entra a onUpload")

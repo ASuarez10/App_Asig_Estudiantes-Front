@@ -2,6 +2,14 @@
     <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
 
     <div class="components">
+        <div *ngFor="let category of categories">
+            <app-dropdown-menu [categoryName]="category.category" [options]="category.options"
+            (checkboxSelected)="onCheckboxSelected($event)"></app-dropdown-menu>
+        </div>
 
+        <h3>Nombres Seleccionados:</h3>
+        <ul>
+        <li *ngFor="let selectedCriterion of selectedCriteria">{{ selectedCriterion }}</li>
+        </ul>
     </div>
 </div>
