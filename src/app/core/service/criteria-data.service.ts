@@ -43,5 +43,24 @@ export class CriteriaDataService {
   }
 
   //Falta el get y los demas.
+  getMultiSelectedCriteriaOptions(): {[key: string]: string[]}{
+    return this.multiSelectedCriteriaOptions;
+  }
+
+  addSelectedQuantitativeOptions(dictionary: { [key: string]: {optionSelected: string[], value: number } }) {
+    this.selectedQuantitativeOptions = dictionary;
+  }
+
+  getSelectedQuantitativeOptions(): { [key: string]: {optionSelected: string[], value: number } } {
+    return this.selectedQuantitativeOptions;
+  }
+
+  addPercentagesEntered(dictionary: { [key: string]: number }) {
+    this.percentagesEntered = dictionary;
+  }
+
+  getPercentagesEntered(): { [key: string]: number }{
+    return this.percentagesEntered;
+  }
 
 }

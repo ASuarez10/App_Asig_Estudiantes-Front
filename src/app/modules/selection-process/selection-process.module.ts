@@ -13,12 +13,14 @@ import { CandidateService } from 'src/app/core/service/candidate.service';
 import { CareerService } from 'src/app/core/service/career.service';
 import { EducationTypeService } from 'src/app/core/service/education-type.service';
 import { HeadquarterService } from 'src/app/core/service/headquarter.service';
+import { CriteriaPriorizationComponent } from './criteria-priorization/criteria-priorization.component';
 
 
 @NgModule({
   declarations: [
     CriteriaSelectionComponent,
-    CriteriaPercentagesComponent
+    CriteriaPercentagesComponent,
+    CriteriaPriorizationComponent
   ],
   imports: [
     CommonModule,

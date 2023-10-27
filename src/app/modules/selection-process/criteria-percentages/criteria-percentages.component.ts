@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CriteriaDataService } from 'src/app/core/service/criteria-data.service';
 import { CriterionInterface } from 'src/app/core/model/criterion';
 import { CandidateService } from 'src/app/core/service/candidate.service';
@@ -26,7 +27,7 @@ export class CriteriaPercentagesComponent {
    cuantitativeComparatorsList: string[] = ['Mayor a', 'Menor a'];
 
   constructor(private criteriaDataService: CriteriaDataService, private candidateService: CandidateService, private careerService: CareerService,
-              private educationTypeService: EducationTypeService, private headquarterService: HeadquarterService){
+              private educationTypeService: EducationTypeService, private headquarterService: HeadquarterService, private router: Router){
 
     //Get the data shared from CriteriaSelectionComponent
     this.criteriaList = this.criteriaDataService.getCriteriaList();
@@ -61,48 +62,87 @@ export class CriteriaPercentagesComponent {
         this.percentagesEntered[criterion.id_criterion] = 0;
       }else if(criterion.id_criterion === '1'){
         this.candidateService.getAllCandidatesSexes().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }else if(criterion.id_criterion === '2'){
         this.candidateService.getAllCandidatesCities().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }else if(criterion.id_criterion === '3'){
         this.candidateService.getAllCandidatesEstates().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }else if(criterion.id_criterion === '5'){
         this.educationTypeService.getAllEducationTypesNames().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }else if(criterion.id_criterion === '7'){
         this.headquarterService.getAllHeadquartersNames().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }else if(criterion.id_criterion === '8'){
         this.careerService.getAllCareersNames().subscribe(data => {
-          this.selectedOptions[criterion.id_criterion] = data;
-          this.multiSelectedCriteriaOptions[criterion.id_criterion] = [];
-          this.percentagesEntered[criterion.id_criterion] = 0;
+          this.createDictionaries(data, criterion.id_criterion);
         });
       }
     });
+  }
+
+  createDictionaries(data: string[], id: string){
+    this.selectedOptions[id] = data;
+    this.multiSelectedCriteriaOptions[id] = [];
+    this.percentagesEntered[id] = 0;
   }
 
   showSelectedOptions(){
     console.log(this.multiSelectedCriteriaOptions);
     console.log(this.selectedQuantitativeOptions);
     console.log(this.percentagesEntered);
+  }
+
+  sumPercentages(): number{
+    let percentageSum: number = 0;
+    for(const percentage in this.percentagesEntered){
+      percentageSum += this.percentagesEntered[percentage];
+    }
+    return percentageSum;
+  }
+
+  theresEmptyFields(): boolean{
+
+    for(const optionsSelected in this.multiSelectedCriteriaOptions){
+      if(this.multiSelectedCriteriaOptions[optionsSelected].length === 0){
+        return true;
+      }
+    }
+
+    for(const key in this.selectedQuantitativeOptions){
+      const object = this.selectedQuantitativeOptions[key];
+
+      if(object.optionSelected.length === 0 || object.value === 0){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  onNextButtonClick(){
+
+    if(this.sumPercentages() === 100){
+      if(this.theresEmptyFields() === false){
+        this.criteriaDataService.addMultiSelectedCriteriaOptions(this.multiSelectedCriteriaOptions);
+        this.criteriaDataService.addSelectedQuantitativeOptions(this.selectedQuantitativeOptions);
+        this.criteriaDataService.addPercentagesEntered(this.percentagesEntered);
+        this.router.navigate(['/selection_process/criteria-priorization']);//Cambiar ruta a nuevo componente
+      }else{
+        console.log("There are at least 1 field empty");
+      }
+      
+    }else{
+      console.log("Percentage sum is not equal to 100");
+      
+    }
   }
 
 }
