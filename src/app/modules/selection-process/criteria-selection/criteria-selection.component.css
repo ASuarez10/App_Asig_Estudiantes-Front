@@ -9,3 +9,13 @@
     align-items: center;
     height: 100vh;
 }
+
+.nextButton {
+  position: fixed;
+  bottom: 100px; 
+  right: 100px;
+  background-color: #AEACAC;
+  cursor: pointer;
+  padding: 20px 40px;
+  font-size: 20px;
+}

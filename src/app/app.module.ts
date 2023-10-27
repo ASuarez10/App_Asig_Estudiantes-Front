@@ -7,6 +7,7 @@ import { Page404Component } from './shared/page404/page404.component';
 import { FormsModule } from '@angular/forms';
 import { LoginModule } from './modules/login/login.module';
 import { SignInComponent } from './modules/login/sign-in/sign-in.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SignInComponent } from './modules/login/sign-in/sign-in.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

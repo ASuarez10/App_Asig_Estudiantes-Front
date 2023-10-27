@@ -17,4 +17,9 @@ export class HeadquarterService {
   public getAllHeadquarters(): Observable<HeadquarterInterface[]>{
     return this.http.get<HeadquarterInterface[]>(this.API_HEADQUARTERS);
   }
+
+  //Get request for all the education types names
+  public getAllHeadquartersNames(): Observable<string[]>{
+    return this.http.get<string[]>(this.API_HEADQUARTERS+"/names");
+  }
 }

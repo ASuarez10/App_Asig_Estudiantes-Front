@@ -7,4 +7,12 @@
     flex-direction: column;
   }
 
- 
+  .categoryTitle{
+    font-size: 22px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .criterion{
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+  }

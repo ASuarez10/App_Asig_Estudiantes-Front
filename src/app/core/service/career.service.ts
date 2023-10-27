@@ -18,4 +18,9 @@ export class CareerService {
     return this.http.get<CareerInterface[]>(this.API_CAREERS);
   }
 
+  //Get request for all the education types names
+  public getAllCareersNames(): Observable<string[]>{
+    return this.http.get<string[]>(this.API_CAREERS+"/names");
+  }
+
 }

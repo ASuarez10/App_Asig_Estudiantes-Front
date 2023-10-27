@@ -2,6 +2,7 @@
     <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
 
     <div class="components">
+        <h1>Elegir criterios</h1>
         <div *ngFor="let category of categories">
             <app-dropdown-menu [categoryName]="category.category" [options]="category.options"
             (checkboxSelected)="onCheckboxSelected($event)"></app-dropdown-menu>
@@ -11,5 +12,6 @@
         <ul>
         <li *ngFor="let selectedCriterion of selectedCriteria">{{ selectedCriterion }}</li>
         </ul>
+        <button (click)="onNextButtonClick()" class="nextButton">Siguiente</button>
     </div>
 </div>

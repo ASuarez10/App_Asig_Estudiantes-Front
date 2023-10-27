@@ -1,0 +1,73 @@
+.container {
+    background-color: #D9D9D9;
+    
+}
+
+.components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+.title {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-size: 22px;
+    font-family: 'Inter', serif;
+}
+
+.horizontal-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.element-criterion-name {
+    margin-right: 100px;
+    width: 200px;
+    height: 60px;
+    font-family: 'Inter', sans-serif;
+}
+
+.element-multiselect-cuantitative{
+    margin-right: 100px;
+    width: 60px;
+    height: 60px;
+}
+
+.element-multiselect-options{
+    margin-right: 100px;
+    width: 150px;
+    height: 60px;
+}
+
+.element-input-percentage{
+    margin-right: 50px;
+    width: 60px;
+    height: 60px;
+}
+
+.percentage-input{
+    margin-right: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.nextButton {
+    position: fixed;
+    bottom: 100px; 
+    right: 100px;
+    background-color: #AEACAC;
+    cursor: pointer;
+    padding: 20px 40px;
+    font-size: 20px;
+}
+
+.cuantitative-input{
+    width: 100px;
+    height: 40px;
+}

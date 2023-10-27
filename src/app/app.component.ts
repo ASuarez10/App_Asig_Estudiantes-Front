@@ -14,11 +14,11 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     const rol = localStorage.getItem('ROL');
 
-    if (rol === 'admin') {
-      this.router.navigate(['/data_loading']);
-    }else if(rol === 'recruiter'){
-      this.router.navigate(['/selection_process']);
-    }
+    //if (rol === 'admin') {
+    //  this.router.navigate(['/data_loading']);
+    //}else if(rol === 'recruiter'){
+    //  this.router.navigate(['/selection_process']);
+    //}
   }
 
 

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MenubarModule} from 'primeng/menubar';
 import { FileUploadModule } from 'primeng/fileupload';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -12,7 +14,9 @@ import { FileUploadModule } from 'primeng/fileupload';
   ],
   exports: [
     MenubarModule,
-    FileUploadModule
+    FileUploadModule,
+    MultiSelectModule,
+    DropdownModule
   ]
 })
 export class PrimeNgModule { }

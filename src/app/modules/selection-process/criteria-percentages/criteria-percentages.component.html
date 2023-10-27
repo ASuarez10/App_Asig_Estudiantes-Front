@@ -1,0 +1,30 @@
+<div class="container">
+    <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
+    <div class="components">
+        <h1 class="title">Establecer porcentajes a los criterios</h1>
+        <div *ngFor="let criterion of criteriaList" class="horizontal-container">
+
+            <div class="element-input-percentage" >
+                <input type="number" class="percentage-input" [(ngModel)]="percentagesEntered[criterion.id_criterion]">
+            </div>
+
+            <div class="element-criterion-name">
+                {{criterion.name}}
+            </div>
+
+            <div class="element-multiselect-cuantitative" >
+                <p-dropdown *ngIf="criterion.statistic_type === 'Cuantitative'" [options]="cuantitativeComparatorsList" [(ngModel)]="selectedQuantitativeOptions[criterion.id_criterion].optionSelected"></p-dropdown>
+            </div>
+
+            <div class="element-multiselect-options" styleClass="multiselect-options-criteria-percentage">
+
+                <input type="number" *ngIf="criterion.statistic_type === 'Cuantitative'" class="cuantitative-input" [(ngModel)]="selectedQuantitativeOptions[criterion.id_criterion].value">
+
+                <p-multiSelect  *ngIf="criterion.statistic_type === 'Cualitative'" [options]="selectedOptions[criterion.id_criterion]" [(ngModel)]="multiSelectedCriteriaOptions[criterion.id_criterion]"></p-multiSelect>
+            
+            </div>
+
+        </div>
+        <button class="nextButton" (click)="showSelectedOptions()">Siguiente</button>
+    </div>
+</div>

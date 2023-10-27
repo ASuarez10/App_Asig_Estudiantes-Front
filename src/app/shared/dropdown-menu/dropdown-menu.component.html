@@ -1,7 +1,7 @@
 <div class="dropdown">
-    <div (click)="toggleDropdown()">{{ categoryName }}</div>
+    <div (click)="toggleDropdown()" class="categoryTitle">{{ categoryName }}</div>
     <div class="checkbox-group" *ngIf="isActive">
-      <label *ngFor="let option of options">
+      <label *ngFor="let option of options" class="criterion">
         <input type="checkbox" (change)="onCheckboxChange(option, $event)"> {{ option }}
       </label>
     </div>

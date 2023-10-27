@@ -5,3 +5,7 @@
 .menu-bar-custom .p-menuitem-text {
     color: white;
 }
+
+.multiselect-options-criteria-percentage{
+    width: 150px;
+}

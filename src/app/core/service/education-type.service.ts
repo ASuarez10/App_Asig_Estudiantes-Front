@@ -13,9 +13,9 @@ export class EducationTypeService {
 
   constructor(private http : HttpClient) {}
 
-  //Get request for all the education types
-  public getAllEducationTypes(): Observable<EducationTypeInterface[]>{
-    return this.http.get<EducationTypeInterface[]>(this.API_EDUCATION_TYPE);
+  //Get request for all the education types names
+  public getAllEducationTypesNames(): Observable<string[]>{
+    return this.http.get<string[]>(this.API_EDUCATION_TYPE+"/names");
   }
 
 }
