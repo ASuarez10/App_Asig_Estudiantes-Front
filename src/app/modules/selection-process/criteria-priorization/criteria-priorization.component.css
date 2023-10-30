@@ -1,0 +1,83 @@
+.container {
+    background-color: #D9D9D9;
+    
+}
+
+.components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+.title {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-size: 22px;
+    font-family: 'Inter', serif;
+}
+
+.horizontal-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.element-criterion-name {
+    margin-right: 100px;
+    margin-top: 20px;
+    width: 200px;
+    height: 60px;
+    font-family: 'Inter', sans-serif;
+}
+
+.horizontal-container ul {
+    list-style-type: none; /* Quita los puntos de la lista */
+}
+
+.horizontal-container ul li {
+    display: block; /* Muestra los elementos de la lista como bloques (verticalmente) */
+    margin-top: 5px; /* Agrega un margen superior entre las opciones */
+}
+
+.element-input-percentage{
+    margin-right: 50px;
+    width: 60px;
+    height: 60px;
+}
+
+.priorization-input{
+    position: fixed;
+    margin-right: 50px;
+    margin-left: 50px;
+    width: 70px;
+    height: 40px;
+    right: 300px;
+}
+
+.li-options-selected-criteria{
+    display: inline-block;
+    margin-right: 100px;
+    margin-bottom: 20px;
+}
+
+.label-option-name{
+    margin-right: 50px;
+
+    width: 100px;
+    height: 60px;
+}
+
+.nextButton {
+    position: fixed;
+    bottom: 100px; 
+    right: 100px;
+    background-color: #AEACAC;
+    cursor: pointer;
+    padding: 20px 40px;
+    font-size: 20px;
+}
+

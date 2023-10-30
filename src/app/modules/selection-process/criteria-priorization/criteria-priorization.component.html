@@ -1,1 +1,32 @@
-<p>criteria-priorization works!</p>
+<div class="container">
+    <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
+    <div class="components">
+        <h1 class="title">Establecer priorización a los criterios</h1>
+        <div *ngFor="let selectedOptions of selectedQualitativeOptionsList" class="horizontal-container">
+            <div class="element-criterion-name">
+                {{ getCriterionNameById(selectedOptions.id) }}
+            </div>
+            <ul>
+                <li *ngFor="let options of selectedOptions.options" class="li-options-selected-criteria">
+                    
+                    <label class="label-option-name">{{ options }}</label>
+
+                    <input type="number" class="priorization-input" [(ngModel)]="priorization[options].value" (ngModelChange)="setPriorizationValue(options, $event)">
+                    
+                </li>
+            </ul>
+        </div>
+        <div *ngFor="let selectedOptions of selectedQuantitativeOptionsList" class="horizontal-container">
+            <div class="element-criterion-name">
+                {{ getCriterionNameById(selectedOptions.id) }}
+            </div>
+            <ul>
+                <li class="li-options-selected-criteria">
+                    <label class="label-option-name">{{ selectedOptions.optionSelected }}</label>
+                    <input type="number" class="priorization-input" [(ngModel)]="priorization[getCriterionNameById(selectedOptions.id)].value" (ngModelChange)="setPriorizationValue(getCriterionNameById(selectedOptions.id), $event)">
+                </li>
+            </ul>
+        </div>
+        <button class="nextButton" (click)="onNextButtonClick()">Siguiente</button>
+    </div>
+</div>

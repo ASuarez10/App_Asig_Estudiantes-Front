@@ -134,6 +134,7 @@ export class CriteriaPercentagesComponent {
         this.criteriaDataService.addMultiSelectedCriteriaOptions(this.multiSelectedCriteriaOptions);
         this.criteriaDataService.addSelectedQuantitativeOptions(this.selectedQuantitativeOptions);
         this.criteriaDataService.addPercentagesEntered(this.percentagesEntered);
+        this.saveDataLocalStorage();
         this.router.navigate(['/selection_process/criteria-priorization']);//Cambiar ruta a nuevo componente
       }else{
         console.log("There are at least 1 field empty");
@@ -143,6 +144,22 @@ export class CriteriaPercentagesComponent {
       console.log("Percentage sum is not equal to 100");
       
     }
+
+  }
+
+  //Funcion temporal para tener datos en la otra pantalla de priorizacion
+  saveDataLocalStorage(){
+    const criteriaListJSON = JSON.stringify(this.criteriaList);
+    localStorage.setItem('criteriaList', criteriaListJSON);
+
+    const multiSelectedCriteriaOptionsJSON = JSON.stringify(this.multiSelectedCriteriaOptions);
+    localStorage.setItem('multiSelectedCriteriaOptions', multiSelectedCriteriaOptionsJSON);
+
+    const selectedQuantitativeOptionsJSON = JSON.stringify(this.selectedQuantitativeOptions);
+    localStorage.setItem('selectedQuantitativeOptions', selectedQuantitativeOptionsJSON);
+
+    const percentagesEnteredJSON = JSON.stringify(this.percentagesEntered);
+    localStorage.setItem('percentagesEntered', percentagesEnteredJSON);
   }
 
 }

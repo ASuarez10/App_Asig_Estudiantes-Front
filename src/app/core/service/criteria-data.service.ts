@@ -20,6 +20,10 @@ export class CriteriaDataService {
   //List with the percentage por each criterion
   percentagesEntered: { [key: string]: number } = {};
 
+  //Dictionary with the information of the criteria priorization where the key is the name of the option for qualitative criteria and the name of the criterion if its
+  //quantitative and the vale of the priority.
+  priorization: { [key: string]: {id:string, value: number} } = {};
+
   constructor() { }
 
   addCriteriaList(list:CriterionInterface[]){
@@ -42,7 +46,6 @@ export class CriteriaDataService {
     this.multiSelectedCriteriaOptions = dictionary;
   }
 
-  //Falta el get y los demas.
   getMultiSelectedCriteriaOptions(): {[key: string]: string[]}{
     return this.multiSelectedCriteriaOptions;
   }
@@ -61,6 +64,14 @@ export class CriteriaDataService {
 
   getPercentagesEntered(): { [key: string]: number }{
     return this.percentagesEntered;
+  }
+
+  addPriorization(dictionary: { [key: string]: {id:string, value: number} }){
+    this.priorization = dictionary;
+  }
+
+  getPriorization(): { [key: string]: {id:string, value: number} }{
+    return this.priorization;
   }
 
 }
