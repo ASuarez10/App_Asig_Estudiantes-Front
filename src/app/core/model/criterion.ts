@@ -7,6 +7,7 @@ export interface CriterionInterface {
     table_name : string,
     statistic_type : string,
     value : string,
+    scheduled_value : string,
     mandatory : string
 
 }

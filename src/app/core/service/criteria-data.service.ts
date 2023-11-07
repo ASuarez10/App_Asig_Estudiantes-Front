@@ -15,13 +15,13 @@ export class CriteriaDataService {
   multiSelectedCriteriaOptions: { [key: string]: string[] } = {};
 
   //List with the options selected for every quantitative criterion.
-  selectedQuantitativeOptions: { [key: string]: {optionSelected: string[], value: number } } = {};
+  selectedQuantitativeOptions: { [key: string]: {optionSelected: string, value: number } } = {};
 
   //List with the percentage por each criterion
   percentagesEntered: { [key: string]: number } = {};
 
   //Dictionary with the information of the criteria priorization where the key is the name of the option for qualitative criteria and the name of the criterion if its
-  //quantitative and the vale of the priority.
+  //quantitative and the value of the priority.
   priorization: { [key: string]: {id:string, value: number} } = {};
 
   constructor() { }
@@ -50,11 +50,11 @@ export class CriteriaDataService {
     return this.multiSelectedCriteriaOptions;
   }
 
-  addSelectedQuantitativeOptions(dictionary: { [key: string]: {optionSelected: string[], value: number } }) {
+  addSelectedQuantitativeOptions(dictionary: { [key: string]: {optionSelected: string, value: number } }) {
     this.selectedQuantitativeOptions = dictionary;
   }
 
-  getSelectedQuantitativeOptions(): { [key: string]: {optionSelected: string[], value: number } } {
+  getSelectedQuantitativeOptions(): { [key: string]: {optionSelected: string, value: number } } {
     return this.selectedQuantitativeOptions;
   }
 

@@ -4,6 +4,7 @@ import {MenubarModule} from 'primeng/menubar';
 import { FileUploadModule } from 'primeng/fileupload';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DropdownModule} from 'primeng/dropdown';
+import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -16,7 +17,8 @@ import {DropdownModule} from 'primeng/dropdown';
     MenubarModule,
     FileUploadModule,
     MultiSelectModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ]
 })
 export class PrimeNgModule { }

@@ -49,7 +49,7 @@ export class CriteriaPercentagesComponent {
   multiSelectedCriteriaOptions: { [key: string]: string[] } = {};
 
   //List with the options selected for every quantitative criterion.
-  selectedQuantitativeOptions: { [key: string]: {optionSelected: string[], value: number } } = {};
+  selectedQuantitativeOptions: { [key: string]: {optionSelected: string, value: number } } = {};
 
   //List with the percentage por each criterion
   percentagesEntered: { [key: string]: number } = {};
@@ -58,7 +58,7 @@ export class CriteriaPercentagesComponent {
   fillCriteriaOptions(){
     this.criteriaList.forEach(criterion => {
       if(criterion.id_criterion === '4' ||  criterion.id_criterion === '6'){
-        this.selectedQuantitativeOptions[criterion.id_criterion] = {optionSelected: [], value: 0};
+        this.selectedQuantitativeOptions[criterion.id_criterion] = {optionSelected: '', value: 0};
         this.percentagesEntered[criterion.id_criterion] = 0;
       }else if(criterion.id_criterion === '1'){
         this.candidateService.getAllCandidatesSexes().subscribe(data => {
@@ -119,7 +119,7 @@ export class CriteriaPercentagesComponent {
     for(const key in this.selectedQuantitativeOptions){
       const object = this.selectedQuantitativeOptions[key];
 
-      if(object.optionSelected.length === 0 || object.value === 0){
+      if(object.optionSelected === '' || object.value === 0){
         return true;
       }
     }

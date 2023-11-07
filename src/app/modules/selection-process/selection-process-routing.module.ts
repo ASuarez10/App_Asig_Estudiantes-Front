@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CriteriaSelectionComponent } from './criteria-selection/criteria-selection.component';
 import { CriteriaPercentagesComponent } from './criteria-percentages/criteria-percentages.component';
 import { CriteriaPriorizationComponent } from './criteria-priorization/criteria-priorization.component';
+import { ExecutionComponent } from './execution/execution.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
       {path: 'criteria-selection', component: CriteriaSelectionComponent},
       {path: 'criteria-percentages', component: CriteriaPercentagesComponent},
       {path: 'criteria-priorization', component: CriteriaPriorizationComponent},
+      {path: 'execution', component: ExecutionComponent},
       {path: '**', redirectTo: 'criteria-selection'}
     ]
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CriterionInterface } from 'src/app/core/model/criterion';
 import { CriteriaDataService } from 'src/app/core/service/criteria-data.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criteria-priorization',
@@ -17,7 +18,7 @@ export class CriteriaPriorizationComponent {
   multiSelectedCriteriaOptions: { [key: string]: string[] } = {};
 
   //List with the options selected for every quantitative criterion.
-  selectedQuantitativeOptions: { [key: string]: {optionSelected: string[], value: number } } = {};
+  selectedQuantitativeOptions: { [key: string]: {optionSelected: string, value: number } } = {};
 
   //List with the percentage por each criterion
   percentagesEntered: { [key: string]: number } = {};
@@ -32,22 +33,22 @@ export class CriteriaPriorizationComponent {
   selectedQualitativeOptionsList: {id:string, options: string[]}[] = [];
 
   //selectedQuantitativeOptions converted to list to work with in HTML ngFor
-  selectedQuantitativeOptionsList: {id:string, optionSelected: string[], value: number }[] = [];
+  selectedQuantitativeOptionsList: {id:string, optionSelected: string, value: number }[] = [];
 
   //Dictionary with the information of the criteria priorization where the key is the name of the option for qualitative criteria and the name of the criterion if its
   //quantitative and the vale of the priority.
   priorization: { [key: string]: {id:string, value: number} } = {};
 
-  constructor(private criteriaDataService: CriteriaDataService){
+  constructor(private criteriaDataService: CriteriaDataService, private router: Router){
   }
 
   ngOnInit(): void{
 
+    this.usuarioRol = localStorage.getItem('ROL') as string;
+
     //Get all data we previusly saved into the local storage
     this.criteriaList = this.criteriaDataService.getCriteriaList();
     console.log("Criteria list", this.criteriaList);
-    
-    this.usuarioRol = localStorage.getItem('ROL') as string;
 
     this.multiSelectedCriteriaOptions = this.criteriaDataService.getMultiSelectedCriteriaOptions();
 
@@ -80,10 +81,12 @@ export class CriteriaPriorizationComponent {
   }
   //Method to initialize and fill the priorization dictionary
   fillPriorizationDictionary(){
+    console.log("selectedQualitativeOptionsList y selectedQuantitativeOptionsList en fillPriorizationDictionary", this.selectedQualitativeOptionsList, this.selectedQuantitativeOptionsList);
+    
     for(const qualitativeOption of this.selectedQualitativeOptionsList){
       const idOption = qualitativeOption.id;
       for(const option of qualitativeOption.options){
-        this.priorization[option] = {id: idOption, value: 0};
+        this.priorization[option+':id'+idOption] = {id: idOption, value: 0};
       }
     }
 
@@ -98,7 +101,12 @@ export class CriteriaPriorizationComponent {
   //Method to get a criterion name by its ID
   getCriterionNameById(id: string):string{
     const criterion = this.criteriaList.find(c => c.id_criterion === id);
-    return criterion ? criterion.name : 'Name';
+    return criterion ? (criterion.name +':id'+ criterion.id_criterion) : 'Name';
+  }
+
+  getOnlyCriterionNameById(id: string):string{
+    const criterion = this.criteriaList.find(c => c.id_criterion === id);
+    return criterion ? (criterion.name) : 'Name';
   }
 
   //Method to refresh the priorization dictionary
@@ -110,6 +118,7 @@ export class CriteriaPriorizationComponent {
   onNextButtonClick(){
     console.log("priorization final", this.priorization);
     this.criteriaDataService.addPriorization(this.priorization);
+    this.router.navigate(['/selection_process/execution']);//Cambiar ruta a nuevo componente
   }
 
   //getDataFromLocalStorage(){

@@ -1,1 +1,11 @@
-<p>execution works!</p>
+<div class="container">
+    <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
+    <div class="components">
+        <h1 class="title">Ejecución</h1>
+        <button (click)="executeSelectionProcess()">Ejecutar ahora</button>
+        <h2>Programar ejecución</h2>
+        <p-calendar [(ngModel)]="value" [showTime]="true" [timeOnly]="true"></p-calendar>
+        <button>Programar</button>
+        
+    </div>
+</div>

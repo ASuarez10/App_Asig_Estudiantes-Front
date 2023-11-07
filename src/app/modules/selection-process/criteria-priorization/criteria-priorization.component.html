@@ -4,21 +4,21 @@
         <h1 class="title">Establecer priorización a los criterios</h1>
         <div *ngFor="let selectedOptions of selectedQualitativeOptionsList" class="horizontal-container">
             <div class="element-criterion-name">
-                {{ getCriterionNameById(selectedOptions.id) }}
+                {{ getOnlyCriterionNameById(selectedOptions.id) }}
             </div>
             <ul>
                 <li *ngFor="let options of selectedOptions.options" class="li-options-selected-criteria">
                     
                     <label class="label-option-name">{{ options }}</label>
 
-                    <input type="number" class="priorization-input" [(ngModel)]="priorization[options].value" (ngModelChange)="setPriorizationValue(options, $event)">
+                    <input type="number" class="priorization-input" [(ngModel)]="priorization[options+':id'+selectedOptions.id].value" (ngModelChange)="setPriorizationValue(options+':id'+selectedOptions.id, $event)">
                     
                 </li>
             </ul>
         </div>
         <div *ngFor="let selectedOptions of selectedQuantitativeOptionsList" class="horizontal-container">
             <div class="element-criterion-name">
-                {{ getCriterionNameById(selectedOptions.id) }}
+                {{ getOnlyCriterionNameById(selectedOptions.id) }}
             </div>
             <ul>
                 <li class="li-options-selected-criteria">

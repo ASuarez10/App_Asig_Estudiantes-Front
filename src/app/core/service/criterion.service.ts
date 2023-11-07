@@ -18,4 +18,10 @@ export class CriterionService {
     return this.http.get<CriterionInterface[]>(this.API_CRITERIA);
   }
 
+  public postAllCriteria(criteria : CriterionInterface[]): Observable<any>{
+    console.log("Post criteria");
+    
+    return this.http.post(this.API_CRITERIA+'/saveAllCriteria', criteria);
+  }
+
 }
