@@ -33,4 +33,13 @@ export class CandidateService {
     return this.http.get<string[]>(this.API_CANDIDATES+"/sexes");
   }
 
+  public postExecuteSelectionProcess(): Observable<any>{
+    return this.http.post(this.API_CANDIDATES+'/executeSelectionProcess', null);
+  }
+
+  public postScheduleSelectionProcess(scheduleTime : string): Observable<any>{
+    const body = { executionTime: scheduleTime }
+    return this.http.post(this.API_CANDIDATES+'/scheduleSelectionProcess', body);
+  }
+
 }

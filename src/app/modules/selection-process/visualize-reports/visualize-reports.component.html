@@ -1,0 +1,15 @@
+<div class="container">
+    <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
+    <div class="components">
+        <h1 class="title">Consulta histórica de reportes</h1>
+        <h2 class="subtitle">Fecha de generación</h2>
+        <ul>
+            <li class="sp-date" *ngFor="let selectionProcess of selectionProcesses" (click)="downloadExcel(selectionProcess.id_process)">{{ selectionProcess.process_date }}</li>
+        </ul>
+        
+        <div class="pages-buttons">
+            <button class="button" (click)="previousPage()" [disabled]="currentPage === 0">Anterior</button>
+            <button class="button" (click)="nextPage()" [disabled]="isLastPage === true">Siguiente</button>
+        </div>
+    </div>
+</div>

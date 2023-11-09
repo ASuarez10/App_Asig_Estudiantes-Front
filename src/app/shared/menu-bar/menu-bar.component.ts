@@ -33,11 +33,13 @@ export class MenuBarComponent {
 
     if(this.rol === 'recruiter'){
       this.items.push({
-        label: 'Inicio'
+        label: 'Inicio',
+        routerLink: ['/selection_process/criteria-selection']
       },
       {
-        label: 'Mis reportes'
-      })
+        label: 'Mis reportes',
+        routerLink: ['/selection_process/visualize-reports']
+      });
     }
     
   }

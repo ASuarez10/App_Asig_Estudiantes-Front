@@ -4,7 +4,8 @@ import { CriteriaConfInterface } from 'src/app/core/model/criteriaConfiguration'
 import { CriteriaDataService } from 'src/app/core/service/criteria-data.service';
 import { CriterionService } from 'src/app/core/service/criterion.service'; 
 import { CriteriaConfService } from 'src/app/core/service/criteria-conf.service';
-import { forkJoin, switchMap } from 'rxjs';
+import { CandidateService } from 'src/app/core/service/candidate.service';
+import { concatMap, forkJoin, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-execution',
@@ -16,7 +17,7 @@ export class ExecutionComponent {
   //Variable that stores the rol from the browser local storage
   usuarioRol: string = '';
 
-  value: string = '';
+  scheduleTime: string = '';
 
   showTime: boolean = true;
 
@@ -38,7 +39,8 @@ export class ExecutionComponent {
   //List of criteria configuration to send information of priorization
   criteriaConf: CriteriaConfInterface[] = [];
 
-  constructor(private criteriaDataService: CriteriaDataService, private criterionService : CriterionService, private criteriaConfService: CriteriaConfService){}
+  constructor(private criteriaDataService: CriteriaDataService, private criterionService : CriterionService, private criteriaConfService: CriteriaConfService,
+              private candidateService: CandidateService){}
 
   ngOnInit(): void{
     this.usuarioRol = localStorage.getItem('ROL') as string;
@@ -59,20 +61,63 @@ export class ExecutionComponent {
   }
 
   //Method to execute the selection process inmediatly.
-  executeSelectionProcess(): void{
-    this.fillCriteriaConfigurationList(0);
-    this.updateCriteriaList('0');
+  executeSelectionProcess(is_automatized:string): void{
+    this.fillCriteriaConfigurationList(Number(is_automatized));
+    this.updateCriteriaList(is_automatized);
 
-    this.criteriaConfService.deleteConfsByAutomatized('0').pipe(
-      switchMap(() => forkJoin([
+    //Delete record with column AUTOMATIZED === is_automatized
+    this.criteriaConfService.deleteConfsByAutomatized(is_automatized).pipe(
+      concatMap(()=> forkJoin([
+        //Services are executed at the same time when deleteConfsByAutomatized finish
         this.criteriaConfService.postAllCriteriaConfs(this.criteriaConf),
         this.criterionService.postAllCriteria(this.criteriaListDB)
-      ]))
-    )
-    .subscribe(() => {
-      console.log("Successfuly deleted");
+      ])),
+      concatMap(() => {
+        if(is_automatized === '0'){
+          //Service is executed when previous services finish
+          return this.candidateService.postExecuteSelectionProcess();
+        }else{
+          let date = new Date(this.scheduleTime);
+          let hour = date.getHours();
+          let minutes = date.getMinutes();
+          let dateFormated : string = hour+':'+minutes;
+          console.log('Hora no formateada',this.scheduleTime);
+          console.log('Hora formateada',dateFormated);
+          return this.candidateService.postScheduleSelectionProcess(dateFormated);
+        }
+        
+      })
+    ).subscribe(() => {
+      console.log("Criteria configuration successfuly deleted");
+      console.log("Criteria configuration successfuly added");
+      console.log("Criteria values successfuly added");
+      if(is_automatized === '0'){
+        console.log("Selection process executed");
+      }else{
+        console.log("Selection process scheduled");
+      }
+      
     });
     
+      
+      //console.log("Hora guradada en scheduleTime",this.scheduleTime);
+      //if(this.scheduleTime != ''){
+      //  this.criteriaConfService.deleteConfsByAutomatized(is_automatized).pipe(
+      //    concatMap(()=> forkJoin([
+      //      this.criteriaConfService.postAllCriteriaConfs(this.criteriaConf),
+      //      this.criterionService.postAllCriteria(this.criteriaListDB)
+      //    ])),
+      //    concatMap(() => {
+      //      console.log(this.scheduleTime);
+      //      return this.candidateService.postScheduleSelectionProcess(this.scheduleTime);
+      //    })
+      //  ).subscribe(() => {
+      //    console.log("Criteria configuration successfuly deleted");
+      //    console.log("Criteria configuration successfuly added");
+      //    console.log("Criteria values successfuly added");
+      //    console.log("Selection process scheduled");
+      //  });
+      //}
 
   }
 

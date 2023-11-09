@@ -96,6 +96,9 @@ export class CriteriaPriorizationComponent {
       this.priorization[criterionName] = {id: idOption, value: 0};
     }
     console.log("priorization inicial", this.priorization);
+    if(Object.keys(this.priorization).length === 0){
+      this.router.navigate(['/selection_process/execution']);//Cambiar ruta a nuevo componente
+    }
   }
 
   //Method to get a criterion name by its ID

@@ -2,7 +2,7 @@
     <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
 
     <div class="components">
-        <h1>Elegir criterios</h1>
+        <h1 class="title">Elegir criterios</h1>
         <div *ngFor="let category of categories">
             <app-dropdown-menu [categoryName]="category.category" [options]="category.options"
             (checkboxSelected)="onCheckboxSelected($event)"></app-dropdown-menu>

@@ -4,6 +4,7 @@ import { CriteriaSelectionComponent } from './criteria-selection/criteria-select
 import { CriteriaPercentagesComponent } from './criteria-percentages/criteria-percentages.component';
 import { CriteriaPriorizationComponent } from './criteria-priorization/criteria-priorization.component';
 import { ExecutionComponent } from './execution/execution.component';
+import { VisualizeReportsComponent } from './visualize-reports/visualize-reports.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: 'criteria-percentages', component: CriteriaPercentagesComponent},
       {path: 'criteria-priorization', component: CriteriaPriorizationComponent},
       {path: 'execution', component: ExecutionComponent},
+      {path: 'visualize-reports', component: VisualizeReportsComponent},
       {path: '**', redirectTo: 'criteria-selection'}
     ]
   }
