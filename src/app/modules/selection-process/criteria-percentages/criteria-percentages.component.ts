@@ -162,4 +162,8 @@ export class CriteriaPercentagesComponent {
     localStorage.setItem('percentagesEntered', percentagesEnteredJSON);
   }
 
+  onPreviousScreenButton(){
+    this.router.navigate(['/selection_process']);
+  }
+
 }

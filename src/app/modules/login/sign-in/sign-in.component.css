@@ -4,13 +4,49 @@
     background-repeat: no-repeat;
     background-position: center;
 
+    display: flex;
+    justify-content: center;
+
     height: 100vh;
 }
 
-input {
+.button-container{
+    display: flex;
+    justify-content: center;
+}
+
+.user_input{
+    margin-bottom: 20px;
     background-color: #595959;
+    height: 30px;
+    width: 200px;
+}
+
+.label{
+    color: white;
+    font-family: 'Inter', serif;
+    font-size: 20px;
+    text-align: left;
 }
 
 .login-title{
     color: #FFFF;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    font-family: 'Inter', serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-button{
+    background-color: #ED1C27;
+    color: white;
+    height: 50px;
+    width: 100px;
+    margin-top: 50px;
 }

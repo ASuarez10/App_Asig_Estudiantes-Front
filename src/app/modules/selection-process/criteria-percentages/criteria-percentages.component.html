@@ -1,6 +1,7 @@
 <div class="container">
     <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
     <div class="components">
+        <button class="back-button" (click)="onPreviousScreenButton()"><-</button>
         <h1 class="title">Establecer porcentajes a los criterios</h1>
         <div *ngFor="let criterion of criteriaList" class="horizontal-container">
 

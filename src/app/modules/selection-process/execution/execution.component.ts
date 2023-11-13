@@ -6,6 +6,7 @@ import { CriterionService } from 'src/app/core/service/criterion.service';
 import { CriteriaConfService } from 'src/app/core/service/criteria-conf.service';
 import { CandidateService } from 'src/app/core/service/candidate.service';
 import { concatMap, forkJoin, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-execution',
@@ -40,7 +41,7 @@ export class ExecutionComponent {
   criteriaConf: CriteriaConfInterface[] = [];
 
   constructor(private criteriaDataService: CriteriaDataService, private criterionService : CriterionService, private criteriaConfService: CriteriaConfService,
-              private candidateService: CandidateService){}
+              private candidateService: CandidateService, private router: Router){}
 
   ngOnInit(): void{
     this.usuarioRol = localStorage.getItem('ROL') as string;
@@ -97,6 +98,8 @@ export class ExecutionComponent {
         console.log("Selection process scheduled");
       }
       
+      this.router.navigate(['/selection_process']);
+
     });
     
       
@@ -201,6 +204,15 @@ export class ExecutionComponent {
       }
     }
 
+  }
+
+  onPreviousScreenButton(){
+    
+    if(Object.keys(this.priorization).length === 0){
+      this.router.navigate(['/selection_process/criteria-percentages']);
+    }else{
+      this.router.navigate(['/selection_process/criteria-priorization']);
+    }
   }
 
 

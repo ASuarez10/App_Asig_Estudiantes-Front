@@ -15,7 +15,7 @@ export class VisualizeReportsComponent {
 
   currentPage: number = 0;
 
-  pageSize: number = 2;
+  pageSize: number = 10;
 
   isLastPage: boolean = false;
 

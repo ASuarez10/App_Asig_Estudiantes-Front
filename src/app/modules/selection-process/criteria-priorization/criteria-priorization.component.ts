@@ -64,6 +64,10 @@ export class CriteriaPriorizationComponent {
 
     this.convertSelectedCriteriaOptionsList();
     this.fillPriorizationDictionary();
+
+    if(Object.keys(this.priorization).length === 0){
+      this.onNextButtonClick();
+    }
     
   }
 
@@ -122,6 +126,10 @@ export class CriteriaPriorizationComponent {
     console.log("priorization final", this.priorization);
     this.criteriaDataService.addPriorization(this.priorization);
     this.router.navigate(['/selection_process/execution']);//Cambiar ruta a nuevo componente
+  }
+
+  onPreviousScreenButton(){
+    this.router.navigate(['/selection_process/criteria-percentages']);
   }
 
   //getDataFromLocalStorage(){

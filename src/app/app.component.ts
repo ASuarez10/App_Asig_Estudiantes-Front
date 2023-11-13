@@ -18,6 +18,8 @@ export class AppComponent implements OnInit{
     //  this.router.navigate(['/data_loading']);
     //}else if(rol === 'recruiter'){
     //  this.router.navigate(['/selection_process']);
+    //}else{
+    //  this.router.navigate(['/login']);
     //}
   }
 

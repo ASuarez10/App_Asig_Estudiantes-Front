@@ -1,11 +1,12 @@
 <div class="container">
     <app-menu-bar [rol]="usuarioRol"></app-menu-bar>
     <div class="components">
+        <button class="back-button" (click)="onPreviousScreenButton()"><-</button>
         <h1 class="title">Ejecución</h1>
         <button (click)="executeSelectionProcess('0')">Ejecutar ahora</button>
         <h2>Programar ejecución</h2>
         <p-calendar [(ngModel)]="scheduleTime" [showTime]="true" [timeOnly]="true"></p-calendar>
-        <button (click)="executeSelectionProcess('1')">Programar</button>
+        <button (click)="executeSelectionProcess('1')" class="scheduleButton">Programar</button>
         
     </div>
 </div>
