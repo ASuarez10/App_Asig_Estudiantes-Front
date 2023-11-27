@@ -18,7 +18,7 @@ export class CandidatesLoadingComponent {
   selectedFile: File | undefined;
 
   //Variable that stores the HTTP response status
-  httpResponseStatus : number = 0;
+  fileuploaded : boolean = false;
 
   constructor(private messageService: MessageService, private candidateService : CandidateService) {}
 
@@ -74,7 +74,7 @@ export class CandidatesLoadingComponent {
               }
             }
 
-            console.log(candidate)
+            //console.log(candidate)
 
             candidateList.push(candidate);
 
@@ -95,6 +95,7 @@ export class CandidatesLoadingComponent {
     }
 
     console.log('Upload completed')
+    this.fileuploaded = true;
 
   }//end onUpload()
 
